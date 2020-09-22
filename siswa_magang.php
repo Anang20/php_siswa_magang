@@ -1,28 +1,29 @@
-<?php
+<?php 
 
 $data_siswa=[];
 
 while(true)
 {
-    //Data siswa
-
+    //data siswa
     $siswa=&$data_siswa;
 
     //banner aplikasi
-
     tampil("Data Siswa Magang TOP");
     tampil("=====================");
 
-    //user memilih input menu
+    //user memilih input data siswa
+    $input_siswa=readline("Masukkan Data Siswa ! ");
 
-    $input_siswa=readline("Masukkan data siswa ? ");
+    if(!preg_match("/^[A-z ]*$/",$input_siswa))
+    {
+        echo "Oops hanya bisa di isi dengan huruf....!\n";
+        continue;
+    }
 
-    //Simpan Data Siswa
-
+    //simpan data siswa
     $siswa[]=$input_siswa;
 
-    //Munculkan data siswa magang
-
+    //munculkan data siswa magang
     $nomor=1;
 
     foreach($siswa as $key)
@@ -30,45 +31,23 @@ while(true)
         tampil("$nomor.$key");
         $nomor++;
     }
+    //tanya user untuk memasukkan data lagi
 
-    // Tanya User untuk memasukkan data lagi
-
-    $tanya=readline("Tambah data ?");
-
-    if($tanya=="no")
-    {
-        tampil("Terima Kasih");
-    break;
-    }
+    tanyaUser();
 }
 
 function tampil($pesan)
 {
     echo $pesan.PHP_EOL;
-
-}
-
-
-
-function validasi_huruf($huruf)
-{
-    $pattern="/[A-Za-z\s]/";
-    //     for
-}
-
-function tampil_data($data)
-{
-
 }
 
 function tanyaUser()
 {
-    $tambah = readline("Tambah Data Lagi (No) ? ");
+    $tanya=readline("Tambah Data (yes/no) ? ");
 
-        if ($tambah == "No" || $tambah!=="yes") 
-        {
-            tampil("Terima kasih");
-        exit;
-        }
-        
+    if($tanya=="no" || $tanya!=="yes")
+    {
+        tampil("Terima Kasih");
+    exit;
+    }
 }
